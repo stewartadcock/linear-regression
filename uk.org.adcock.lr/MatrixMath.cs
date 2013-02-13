@@ -1,12 +1,14 @@
 ﻿#region Copyright (c) 2013 Stewart Adcock
 //
-// Filename: LinearRegression.cs
-//
-// This file is used under the terms of the 2-clause BSD license:
+// Filename: MatrixMath.cs
 //
 // Copyright (c) 2013, Stewart A. Adcock
-// Parts Copyright (c) 2008 Walt Fair, Jr. used under terms of CPOL 1.02, see license file.
+// Parts Copyright (c) 2008 Walt Fair, Jr. used under terms of CPOL 1.02, see License file.
 // All rights reserved.
+//
+// The latest version will be available at https://code.google.com/p/linear-regression/
+//
+// This file is provided under the terms of the 2-clause BSD license:
 //
 // Redistribution and use in source and binary forms, with or without modification, are
 // permitted provided that the following conditions are met:

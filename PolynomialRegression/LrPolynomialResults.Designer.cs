@@ -1,6 +1,6 @@
 namespace uk.org.adcock.lr
 {
-    partial class LrResults
+    partial class LrPolynomialResults
     {
         /// <summary>
         /// Required designer variable.
@@ -169,7 +169,7 @@ namespace uk.org.adcock.lr
       this.aueLabel.TabIndex = 8;
       this.aueLabel.Text = "Average Unsigned Error:";
       // 
-      // LrResults
+      // LrPolynomialResults
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -184,9 +184,9 @@ namespace uk.org.adcock.lr
       this.Controls.Add(this.fLabel);
       this.Controls.Add(this.closeButton);
       this.Controls.Add(this.grid);
-      this.Name = "LrResults";
+      this.Name = "LrPolynomialResults";
       this.Text = "Regression Results";
-      this.Load += new System.EventHandler(this.LrResults_Load);
+      this.Load += new System.EventHandler(this.LrPolynomialResults_Load);
       ((System.ComponentModel.ISupportInitialize)(this.grid)).EndInit();
       this.ResumeLayout(false);
       this.PerformLayout();

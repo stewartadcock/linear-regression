@@ -2,10 +2,12 @@
 //
 // Filename: TestMatrixMath.cs
 //
-// This file is used under the terms of the 2-clause BSD license:
-//
 // Copyright (c) 2013, Stewart A. Adcock
 // All rights reserved.
+//
+// The latest version will be available at https://code.google.com/p/linear-regression/
+//
+// This file is provided under the terms of the 2-clause BSD license:
 //
 // Redistribution and use in source and binary forms, with or without modification, are
 // permitted provided that the following conditions are met:
