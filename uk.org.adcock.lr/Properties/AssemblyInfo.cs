@@ -6,11 +6,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("uk.org.adcock.lr")]
+[assembly: AssemblyTitle("Uk.Org.Adcock.Lr")]
 [assembly: AssemblyDescription("Multivariate Linear Regression")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Stewart A. Adcock")]
-[assembly: AssemblyProduct("uk.org.adcock.lr")]
+[assembly: AssemblyProduct("Uk.Org.Adcock.Lr")]
 [assembly: AssemblyCopyright("Copyright © 2013, Stewart A. Adcock. All rights reserved. Portions © 2008, Walt Fair, Jr.")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

@@ -1,4 +1,4 @@
-namespace uk.org.adcock.lr
+namespace Uk.Org.Adcock.Lr
 {
     partial class LrPolynomialResults
     {
@@ -38,7 +38,7 @@ namespace uk.org.adcock.lr
       this.stdevLabel = new System.Windows.Forms.Label();
       this.stdevValueLabel = new System.Windows.Forms.Label();
       this.corrCoValueLabel = new System.Windows.Forms.Label();
-      this.fValueLabel = new System.Windows.Forms.Label();
+      this.fstatValueLabel = new System.Windows.Forms.Label();
       this.aueValueLabel = new System.Windows.Forms.Label();
       this.aueLabel = new System.Windows.Forms.Label();
       ((System.ComponentModel.ISupportInitialize)(this.grid)).BeginInit();
@@ -139,15 +139,15 @@ namespace uk.org.adcock.lr
       this.corrCoValueLabel.TabIndex = 6;
       this.corrCoValueLabel.Text = "<>";
       // 
-      // fValueLabel
+      // fstatValueLabel
       // 
-      this.fValueLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-      this.fValueLabel.AutoSize = true;
-      this.fValueLabel.Location = new System.Drawing.Point(165, 166);
-      this.fValueLabel.Name = "fValueLabel";
-      this.fValueLabel.Size = new System.Drawing.Size(19, 13);
-      this.fValueLabel.TabIndex = 5;
-      this.fValueLabel.Text = "<>";
+      this.fstatValueLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+      this.fstatValueLabel.AutoSize = true;
+      this.fstatValueLabel.Location = new System.Drawing.Point(165, 166);
+      this.fstatValueLabel.Name = "fstatValueLabel";
+      this.fstatValueLabel.Size = new System.Drawing.Size(19, 13);
+      this.fstatValueLabel.TabIndex = 5;
+      this.fstatValueLabel.Text = "<>";
       // 
       // aueValueLabel
       // 
@@ -178,7 +178,7 @@ namespace uk.org.adcock.lr
       this.Controls.Add(this.aueLabel);
       this.Controls.Add(this.stdevValueLabel);
       this.Controls.Add(this.corrCoValueLabel);
-      this.Controls.Add(this.fValueLabel);
+      this.Controls.Add(this.fstatValueLabel);
       this.Controls.Add(this.stdevLabel);
       this.Controls.Add(this.corrCoLabel);
       this.Controls.Add(this.fLabel);
@@ -205,7 +205,7 @@ namespace uk.org.adcock.lr
         private System.Windows.Forms.Label stdevLabel;
         private System.Windows.Forms.Label stdevValueLabel;
         private System.Windows.Forms.Label corrCoValueLabel;
-        private System.Windows.Forms.Label fValueLabel;
+        private System.Windows.Forms.Label fstatValueLabel;
         private System.Windows.Forms.Label aueValueLabel;
         private System.Windows.Forms.Label aueLabel;
     }

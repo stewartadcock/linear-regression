@@ -35,11 +35,11 @@
 //
 #endregion
 
-using System;
-using System.Windows.Forms;
-
-namespace uk.org.adcock.lr
+namespace Uk.Org.Adcock.Lr
 {
+  using System;
+  using System.Windows.Forms;
+
   public partial class LrPolynomialResults : Form
   {
     public double[] C;
@@ -49,29 +49,42 @@ namespace uk.org.adcock.lr
     public double StdDev;
     public double Aue;
 
+    /// <summary>
+    /// Initializes a new instance of the <see cref="LrPolynomialResults"/> class.
+    /// </summary>
     public LrPolynomialResults()
     {
-      InitializeComponent();
+      this.InitializeComponent();
     }
 
+    /// <summary>
+    /// Handles the Click event of the closeButton control.
+    /// </summary>
+    /// <param name="sender">The source of the event.</param>
+    /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
     private void closeButton_Click(object sender, EventArgs e)
     {
       Close();
     }
 
+    /// <summary>
+    /// Handles the Load event of the LrPolynomialResults control.
+    /// </summary>
+    /// <param name="sender">The source of the event.</param>
+    /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
     private void LrPolynomialResults_Load(object sender, EventArgs e)
     {
-      if (C != null)
+      if (this.C != null)
       {
-        for (int i = 0; i < C.Length; i++)
+        for (int i = 0; i < this.C.Length; i++)
         {
-          int row = grid.Rows.Add();
-          grid.Rows[row].Cells[0].Value = i.ToString();
-          grid.Rows[row].Cells[1].Value = C[i].ToString();
-          grid.Rows[row].Cells[2].Value = SEC[i].ToString();
+          int row = this.grid.Rows.Add();
+          this.grid.Rows[row].Cells[0].Value = i.ToString();
+          this.grid.Rows[row].Cells[1].Value = this.C[i].ToString();
+          this.grid.Rows[row].Cells[2].Value = this.SEC[i].ToString();
         }
       }
-      this.fValueLabel.Text = this.F.ToString();
+      this.fstatValueLabel.Text = this.F.ToString();
       this.corrCoValueLabel.Text = this.Coeff.ToString();
       this.stdevValueLabel.Text = this.StdDev.ToString();
       this.aueValueLabel.Text = this.Aue.ToString();

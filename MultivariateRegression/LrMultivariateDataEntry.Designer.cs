@@ -1,4 +1,4 @@
-namespace uk.org.adcock.lr
+namespace Uk.Org.Adcock.Lr
 {
   partial class LrMultivariateDataEntry
   {

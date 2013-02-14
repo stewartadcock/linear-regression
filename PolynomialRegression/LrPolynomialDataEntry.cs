@@ -35,45 +35,53 @@
 //
 #endregion
 
-using System;
-using System.Windows.Forms;
-
-namespace uk.org.adcock.lr
+namespace Uk.Org.Adcock.Lr
 {
+  using System;
+  using System.Windows.Forms;
+
   public partial class LrPolynomialDataEntry : Form
   {
+    /// <summary>
+    /// Initializes a new instance of the <see cref="LrPolynomialDataEntry"/> class.
+    /// </summary>
     public LrPolynomialDataEntry()
     {
-      InitializeComponent();
+      this.InitializeComponent();
     }
 
+    /// <summary>
+    /// Handles the Click event of the fitButton control.
+    /// </summary>
+    /// <param name="sender">The source of the event.</param>
+    /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
     private void fitButton_Click(object sender, EventArgs e)
     {
-      int N = (int)orderNumericUpDown.Value;
-      double[] y = new double[grid.Rows.Count - 1];
-      double[,] x = new double[N + 1, grid.Rows.Count - 1];
-      double[] w = new double[grid.Rows.Count - 1];
-      for (int i = 0; i < grid.Rows.Count - 1; i++)
+      int N = (int)this.orderNumericUpDown.Value;
+      double[] y = new double[this.grid.Rows.Count - 1];
+      double[,] x = new double[N + 1, this.grid.Rows.Count - 1];
+      double[] w = new double[this.grid.Rows.Count - 1];
+      for (int i = 0; i < this.grid.Rows.Count - 1; i++)
       {
-        if (grid.Rows[i].Cells[0].Value != null)
+        if (this.grid.Rows[i].Cells[0].Value != null)
         {
           x[0, i] = 1;
-          double xx = double.Parse(grid.Rows[i].Cells[2].Value.ToString());
+          double xx = double.Parse(this.grid.Rows[i].Cells[2].Value.ToString());
           double term = xx;
           for (int j = 1; j <= N; j++)
           {
             x[j, i] = term;
             term *= xx;
           }
-          if (logYCheckBox.Checked)
+          if (this.logYCheckBox.Checked)
           {
-            y[i] = Math.Log(double.Parse(grid.Rows[i].Cells[3].Value.ToString()));
+            y[i] = Math.Log(double.Parse(this.grid.Rows[i].Cells[3].Value.ToString()));
           }
           else
           {
-            y[i] = double.Parse(grid.Rows[i].Cells[3].Value.ToString());
+            y[i] = double.Parse(this.grid.Rows[i].Cells[3].Value.ToString());
           }
-          w[i] = double.Parse(grid.Rows[i].Cells[1].Value.ToString());
+          w[i] = double.Parse(this.grid.Rows[i].Cells[1].Value.ToString());
         }
       }
 
@@ -89,9 +97,14 @@ namespace uk.org.adcock.lr
       form.ShowDialog();
     }
 
+    /// <summary>
+    /// Handles the Load event of the LrPolynomialDataEntry control.
+    /// </summary>
+    /// <param name="sender">The source of the event.</param>
+    /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
     private void LrPolynomialDataEntry_Load(object sender, EventArgs e)
     {
-      UpdateGrid();
+      this.UpdateGrid();
     }
 
     private void UpdateGrid()
@@ -99,26 +112,31 @@ namespace uk.org.adcock.lr
       Random r = new Random();
       for (int i = 0; i < 20; i++)
       {
-        int row = grid.Rows.Add();
-        grid.Rows[row].Cells[0].Value = i.ToString();
-        grid.Rows[row].Cells[1].Value = "1";
-        grid.Rows[row].Cells[2].Value = (i / 10.0).ToString();
-        grid.Rows[row].Cells[3].Value = (4.0 + 3.0 * i / 10.0 + r.NextDouble() / 10.0).ToString();
+        int row = this.grid.Rows.Add();
+        this.grid.Rows[row].Cells[0].Value = i.ToString();
+        this.grid.Rows[row].Cells[1].Value = "1";
+        this.grid.Rows[row].Cells[2].Value = (i / 10.0).ToString();
+        this.grid.Rows[row].Cells[3].Value = (4.0 + 3.0 * i / 10.0 + r.NextDouble() / 10.0).ToString();
       }
     }
 
+    /// <summary>
+    /// Handles the CheckedChanged event of the logYCheckBox control.
+    /// </summary>
+    /// <param name="sender">The source of the event.</param>
+    /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
     private void logYCheckBox_CheckedChanged(object sender, EventArgs e)
     {
-      for (int r = 0; r < grid.Rows.Count - 1; r++)
+      for (int r = 0; r < this.grid.Rows.Count - 1; r++)
       {
-        if (logYCheckBox.Checked)
+        if (this.logYCheckBox.Checked)
         {
-          double x = double.Parse(grid.Rows[r].Cells[3].Value.ToString());
-          grid.Rows[r].Cells[1].Value = (x * x).ToString();
+          double x = double.Parse(this.grid.Rows[r].Cells[3].Value.ToString());
+          this.grid.Rows[r].Cells[1].Value = (x * x).ToString();
         }
         else
         {
-          grid.Rows[r].Cells[1].Value = "1";
+          this.grid.Rows[r].Cells[1].Value = "1";
         }
       }
     }

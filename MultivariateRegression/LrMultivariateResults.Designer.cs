@@ -1,4 +1,4 @@
-namespace uk.org.adcock.lr
+namespace Uk.Org.Adcock.Lr
 {
     partial class LrMultivariateResults
     {
@@ -33,12 +33,12 @@ namespace uk.org.adcock.lr
       this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
       this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
       this.closeButton = new System.Windows.Forms.Button();
-      this.fLabel = new System.Windows.Forms.Label();
+      this.fstatLabel = new System.Windows.Forms.Label();
       this.corrCoLabel = new System.Windows.Forms.Label();
       this.stdevLabel = new System.Windows.Forms.Label();
       this.stdevValueLabel = new System.Windows.Forms.Label();
       this.corrCoValueLabel = new System.Windows.Forms.Label();
-      this.fValueLabel = new System.Windows.Forms.Label();
+      this.fstatValueLabel = new System.Windows.Forms.Label();
       this.aueValueLabel = new System.Windows.Forms.Label();
       this.aueLabel = new System.Windows.Forms.Label();
       ((System.ComponentModel.ISupportInitialize)(this.grid)).BeginInit();
@@ -89,15 +89,15 @@ namespace uk.org.adcock.lr
       this.closeButton.UseVisualStyleBackColor = true;
       this.closeButton.Click += new System.EventHandler(this.closeButton_Click);
       // 
-      // fLabel
+      // fstatLabel
       // 
-      this.fLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-      this.fLabel.AutoSize = true;
-      this.fLabel.Location = new System.Drawing.Point(9, 166);
-      this.fLabel.Name = "fLabel";
-      this.fLabel.Size = new System.Drawing.Size(47, 13);
-      this.fLabel.TabIndex = 2;
-      this.fLabel.Text = "Fisher F:";
+      this.fstatLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+      this.fstatLabel.AutoSize = true;
+      this.fstatLabel.Location = new System.Drawing.Point(9, 166);
+      this.fstatLabel.Name = "fstatLabel";
+      this.fstatLabel.Size = new System.Drawing.Size(47, 13);
+      this.fstatLabel.TabIndex = 2;
+      this.fstatLabel.Text = "Fisher F:";
       // 
       // corrCoLabel
       // 
@@ -139,15 +139,15 @@ namespace uk.org.adcock.lr
       this.corrCoValueLabel.TabIndex = 6;
       this.corrCoValueLabel.Text = "<>";
       // 
-      // fValueLabel
+      // fstatValueLabel
       // 
-      this.fValueLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-      this.fValueLabel.AutoSize = true;
-      this.fValueLabel.Location = new System.Drawing.Point(165, 166);
-      this.fValueLabel.Name = "fValueLabel";
-      this.fValueLabel.Size = new System.Drawing.Size(19, 13);
-      this.fValueLabel.TabIndex = 5;
-      this.fValueLabel.Text = "<>";
+      this.fstatValueLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+      this.fstatValueLabel.AutoSize = true;
+      this.fstatValueLabel.Location = new System.Drawing.Point(165, 166);
+      this.fstatValueLabel.Name = "fstatValueLabel";
+      this.fstatValueLabel.Size = new System.Drawing.Size(19, 13);
+      this.fstatValueLabel.TabIndex = 5;
+      this.fstatValueLabel.Text = "<>";
       // 
       // aueValueLabel
       // 
@@ -178,10 +178,10 @@ namespace uk.org.adcock.lr
       this.Controls.Add(this.aueLabel);
       this.Controls.Add(this.stdevValueLabel);
       this.Controls.Add(this.corrCoValueLabel);
-      this.Controls.Add(this.fValueLabel);
+      this.Controls.Add(this.fstatValueLabel);
       this.Controls.Add(this.stdevLabel);
       this.Controls.Add(this.corrCoLabel);
-      this.Controls.Add(this.fLabel);
+      this.Controls.Add(this.fstatLabel);
       this.Controls.Add(this.closeButton);
       this.Controls.Add(this.grid);
       this.Name = "LrMultivariateResults";
@@ -200,12 +200,12 @@ namespace uk.org.adcock.lr
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
-        private System.Windows.Forms.Label fLabel;
+        private System.Windows.Forms.Label fstatLabel;
         private System.Windows.Forms.Label corrCoLabel;
         private System.Windows.Forms.Label stdevLabel;
         private System.Windows.Forms.Label stdevValueLabel;
         private System.Windows.Forms.Label corrCoValueLabel;
-        private System.Windows.Forms.Label fValueLabel;
+        private System.Windows.Forms.Label fstatValueLabel;
         private System.Windows.Forms.Label aueValueLabel;
         private System.Windows.Forms.Label aueLabel;
     }

@@ -34,14 +34,14 @@
 //
 #endregion
 
-using System;
-
-using uk.org.adcock.lr;
-
-using NUnit.Framework;
-
 namespace Fr.Fc.FcCore.Tests
 {
+  using System;
+
+  using NUnit.Framework;
+
+  using Uk.Org.Adcock.Lr;
+
   /// <summary>
   /// Tests the MatrixMath class
   /// </summary>
@@ -56,8 +56,8 @@ namespace Fr.Fc.FcCore.Tests
     public void TestSymmetricMatrixInvertNonSquareMatrixThrowsArgumentException()
     {
       double[,] matrix = new double[2, 4];
-      
-      Assert.Throws<ArgumentException>(() => {MatrixMath.SymmetricMatrixInvert(matrix);});
+
+      Assert.Throws<ArgumentException>(() => { MatrixMath.SymmetricMatrixInvert(matrix); });
     }
 
     /// <summary>
@@ -67,9 +67,9 @@ namespace Fr.Fc.FcCore.Tests
     public void TestSymmetricMatrixInvertSuccessReturnsTrue()
     {
       double[,] matrix = new double[3, 3] {
-        {1.0, 2.0, 2.0},
-        {2.0, 1.0, 2.0},
-        {2.0, 2.0, 1.0}
+        { 1.0, 2.0, 2.0},
+        { 2.0, 1.0, 2.0},
+        { 2.0, 2.0, 1.0}
        };
       Assert.IsTrue(MatrixMath.SymmetricMatrixInvert(matrix));
     }
@@ -81,9 +81,9 @@ namespace Fr.Fc.FcCore.Tests
     public void TestSymmetricMatrixInvertFailReturnsFalse()
     {
       double[,] matrix = new double[3, 3] {
-        {0.0, 0.0, 0.0},
-        {0.0, 0.0, 0.0},
-        {0.0, 0.0, 0.0}
+        { 0.0, 0.0, 0.0},
+        { 0.0, 0.0, 0.0},
+        { 0.0, 0.0, 0.0}
        };
       Assert.IsFalse(MatrixMath.SymmetricMatrixInvert(matrix));
     }
@@ -95,14 +95,14 @@ namespace Fr.Fc.FcCore.Tests
     public void TestSymmetricMatrixInvertSimpleSample()
     {
       double[,] matrix = new double[3, 3] {
-        {1.0, 2.0, 2.0},
-        {2.0, 1.0, 2.0},
-        {2.0, 2.0, 1.0}
+        { 1.0, 2.0, 2.0},
+        { 2.0, 1.0, 2.0},
+        { 2.0, 2.0, 1.0}
        };
       double[,] expected = new double[3, 3] {
-        {-0.6, 0.4, 0.4},
-        {0.4, -0.6, 0.4},
-        {0.4, 0.4, -0.6}
+        { -0.6, 0.4, 0.4},
+        { 0.4, -0.6, 0.4},
+        { 0.4, 0.4, -0.6}
        };
       Assert.IsTrue(MatrixMath.SymmetricMatrixInvert(matrix));
       for (int i = 0; i < 3; i++)

@@ -35,20 +35,27 @@
 //
 #endregion
 
-using System;
-
-namespace uk.org.adcock.lr
+namespace Uk.Org.Adcock.Lr
 {
+  using System;
+
   /// <summary>
+  /// A weighted linear regression algorithm, using symmetric matrix inversion.
+  /// </summary>
+  /// <remarks>
+  /// <para>
   /// This class provides a weighted linear regression algorithm, using symmetric matrix inversion to overcome any
   /// non-linearity of the dependent variables and to compute the complete variance-covariance matrix, allowing
   /// estimation of confidence intervals in the determined regression coefficients.
-  /// 
+  /// </para>
+  /// <para>
   /// Certain statistical measures are automatically calculated as part of the computation, including the Fisher F-statistic.
-  /// 
+  /// </para>
+  /// <para>
   /// Good general reference:
   /// Draper, N. R. and H. Smith, Applied Regression Analysis, New York: Wiley (1966)
-  /// </summary>
+  /// </para>
+  /// </remarks>
   public class LinearRegression
   {
     private double[,] V; // Least squares and variance-covariance matrix
@@ -60,112 +67,6 @@ namespace uk.org.adcock.lr
     private double AUE; // Average unsigned error of calculated values
     private double[] Ycalc; // Calculated values of Y
     private double[] DY; // Residual values of Y
-
-    #region Public methods
-    /// <summary>
-    /// Regression analysis of the specified Y.
-    /// </summary>
-    /// <remarks>
-    /// A weighted linear regression analysis, using symmetric matrix inversion to overcome any
-    /// non-linearity of the dependent variables and to compute the complete variance-covariance matrix, allowing
-    /// estimation of confidence intervals in the determined regression coefficients.
-    /// </remarks>
-    /// <param name="Y">The Y vector (data point values).</param>
-    /// <param name="X">The X matrix (dependent variables of each data point).</param>
-    /// <param name="W">The W vector (data point weights).</param>
-    /// <returns><c>True</c> if regression is successful; Otherwise, <c>false</c>.</returns>
-    public bool Regression(double[] Y, double[,] X, double[] W)
-    {
-      int M = Y.Length; // M = Number of data points
-
-      if (M != W.Length)
-      {
-        throw new ArgumentException("Length of Y must equal length of W.");
-      }
-
-      int N = X.Length / M; // N = Number of linear terms
-      int NDF = M - N; // Degrees of freedom
-      // If not enough data, don't attempt regression
-      if (NDF < 1)
-      {
-        return false;
-      }
-
-      this.Ycalc = new double[M];
-      this.DY = new double[M];
-      this.V = new double[N, N];
-      this.C = new double[N];
-      this.SEC = new double[N];
-      double[] B = new double[N]; // Vector for LSQ
-
-      // Populate Least Squares Matrix
-      for (int i = 0; i < N; i++)
-      {
-        for (int j = 0; j < N; j++)
-        {
-          this.V[i, j] = 0;
-          for (int k = 0; k < M; k++)
-            this.V[i, j] += W[k] * X[i, k] * X[j, k];
-        }
-        B[i] = 0;
-        for (int k = 0; k < M; k++)
-          B[i] += W[k] * X[i, k] * Y[k];
-      }
-      // V now contains the raw least squares matrix
-      if (!MatrixMath.SymmetricMatrixInvert(this.V))
-      {
-        return false;
-      }
-      // V now contains the inverted least square matrix
-      // Matrix multiply to get coefficients C = VB
-      for (int i = 0; i < N; i++)
-      {
-        this.C[i] = 0;
-        for (int j = 0; j < N; j++)
-          this.C[i] += this.V[i, j] * B[j];
-      }
-
-      // Calculate statistics
-      double TSS = 0.0;
-      double RSS = 0.0;
-      double YBAR = 0.0;
-      double WSUM = 0.0;
-      for (int k = 0; k < M; k++)
-      {
-        YBAR += W[k] * Y[k];
-        WSUM += W[k];
-      }
-      YBAR /= WSUM;
-      this.AUE = 0.0;
-      for (int k = 0; k < M; k++)
-      {
-        this.Ycalc[k] = 0;
-        for (int i = 0; i < N; i++)
-          this.Ycalc[k] += this.C[i] * X[i, k];
-        this.DY[k] = this.Ycalc[k] - Y[k];
-        TSS += W[k] * (Y[k] - YBAR) * (Y[k] - YBAR);
-        RSS += W[k] * this.DY[k] * this.DY[k];
-        this.AUE += this.DY[k];
-      }
-      this.AUE /= M;
-      double SSQ = RSS / NDF;
-      this.RYSQ = 1 - RSS / TSS;
-      this.FReg = double.MaxValue;
-      if (this.RYSQ < 0.9999999)
-        this.FReg = this.RYSQ / (1 - this.RYSQ) * NDF / (N - 1);
-      this.SDV = Math.Sqrt(SSQ);
-
-      // Calculate variance-covariance matrix and std error of coefficients
-      for (int i = 0; i < N; i++)
-      {
-        for (int j = 0; j < N; j++)
-          this.V[i, j] *= SSQ;
-        this.SEC[i] = Math.Sqrt(this.V[i, i]);
-      }
-
-      return true;
-    }
-    #endregion
 
     #region Properties
     public double FisherF
@@ -211,6 +112,123 @@ namespace uk.org.adcock.lr
     public double[,] VarianceMatrix
     {
       get { return this.V; }
+    }
+    #endregion
+
+    #region Public methods
+    /// <summary>
+    /// Regression analysis of the specified Y.
+    /// </summary>
+    /// <remarks>
+    /// A weighted linear regression analysis, using symmetric matrix inversion to overcome any
+    /// non-linearity of the dependent variables and to compute the complete variance-covariance matrix, allowing
+    /// estimation of confidence intervals in the determined regression coefficients.
+    /// </remarks>
+    /// <param name="Y">The Y vector (data point values).</param>
+    /// <param name="X">The X matrix (dependent variables of each data point).</param>
+    /// <param name="W">The W vector (data point weights).</param>
+    /// <returns><c>True</c> if regression is successful; Otherwise, <c>false</c>.</returns>
+    public bool Regression(double[] Y, double[,] X, double[] W)
+    {
+      int M = Y.Length; // M = Number of data points
+
+      if (M != W.Length)
+      {
+        throw new ArgumentException("Length of Y must equal length of W.");
+      }
+
+      int N = X.Length / M; // N = Number of linear terms
+      int NDF = M - N; // Degrees of freedom
+      // If not enough data, don't attempt regression
+      if (NDF < 1)
+      {
+        return false;
+      }
+
+      this.Ycalc = new double[M];
+      this.DY = new double[M];
+      this.V = new double[N, N];
+      this.C = new double[N];
+      this.SEC = new double[N];
+      double[] B = new double[N]; // Vector for LSQ
+
+      // Populate Least Squares Matrix
+      for (int i = 0; i < N; i++)
+      {
+        for (int j = 0; j < N; j++)
+        {
+          this.V[i, j] = 0;
+          for (int k = 0; k < M; k++)
+          {
+            this.V[i, j] += W[k] * X[i, k] * X[j, k];
+          }
+        }
+
+        B[i] = 0;
+        for (int k = 0; k < M; k++)
+          B[i] += W[k] * X[i, k] * Y[k];
+      }
+
+      // V now contains the raw least squares matrix
+      if (!MatrixMath.SymmetricMatrixInvert(this.V))
+      {
+        return false;
+      }
+
+      // V now contains the inverted least square matrix
+      // Matrix multiply to get coefficients C = VB
+      for (int i = 0; i < N; i++)
+      {
+        this.C[i] = 0;
+        for (int j = 0; j < N; j++)
+          this.C[i] += this.V[i, j] * B[j];
+      }
+
+      // Calculate statistics
+      double TSS = 0.0;
+      double RSS = 0.0;
+      double YBAR = 0.0;
+      double WSUM = 0.0;
+      for (int k = 0; k < M; k++)
+      {
+        YBAR += W[k] * Y[k];
+        WSUM += W[k];
+      }
+
+      YBAR /= WSUM;
+      this.AUE = 0.0;
+      for (int k = 0; k < M; k++)
+      {
+        this.Ycalc[k] = 0;
+        for (int i = 0; i < N; i++)
+        {
+          this.Ycalc[k] += this.C[i] * X[i, k];
+        }
+
+        this.DY[k] = this.Ycalc[k] - Y[k];
+        TSS += W[k] * (Y[k] - YBAR) * (Y[k] - YBAR);
+        RSS += W[k] * this.DY[k] * this.DY[k];
+        this.AUE += this.DY[k];
+      }
+      this.AUE /= M;
+      double SSQ = RSS / NDF;
+      this.RYSQ = 1 - (RSS / TSS);
+      this.FReg = double.MaxValue;
+      if (this.RYSQ < 0.9999999)
+      {
+        this.FReg = this.RYSQ / (1 - this.RYSQ) * NDF / (N - 1);
+      }
+      this.SDV = Math.Sqrt(SSQ);
+
+      // Calculate variance-covariance matrix and std error of coefficients
+      for (int i = 0; i < N; i++)
+      {
+        for (int j = 0; j < N; j++)
+          this.V[i, j] *= SSQ;
+        this.SEC[i] = Math.Sqrt(this.V[i, i]);
+      }
+
+      return true;
     }
     #endregion
 

@@ -35,10 +35,10 @@
 //
 #endregion
 
-using System;
-
-namespace uk.org.adcock.lr
+namespace Uk.Org.Adcock.Lr
 {
+  using System;
+
   /// <summary>
   /// General Maths-based utility methods.
   /// </summary>
@@ -78,10 +78,12 @@ namespace uk.org.adcock.lr
             K = L;
           }
         }
+
         if (Big == 0)
         {
           return false;
         }
+
         R[K] = 0;
         Q[K] = 1 / matrix[K, K];
         t[K] = 1;
@@ -98,22 +100,33 @@ namespace uk.org.adcock.lr
             matrix[L, K] = 0;
           }
         }
+
         if (K <= N)
         {
           for (int L = K + 1; L < N; L++)
           {
             if (R[L] != 0)
+            {
               t[L] = matrix[K, L];
+            }
             else
+            {
               t[L] = -matrix[K, L];
+            }
             Q[L] = -matrix[K, L] * Q[K];
             matrix[K, L] = 0;
           }
         }
+
         for (int L = 0; L < N; L++)
+        {
           for (K = L; K < N; K++)
+          {
             matrix[L, K] += t[L] * Q[K];
+          }
+        }
       }
+
       int m = N;
       for (K = 1; K < N; K++)
       {
@@ -121,6 +134,7 @@ namespace uk.org.adcock.lr
         for (int J = 0; J < m; J++)
           matrix[m, J] = matrix[J, m];
       }
+
       return true;
     }
   }
